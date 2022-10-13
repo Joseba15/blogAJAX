@@ -1,0 +1,36 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "My first post",
+      "date": "13-10-2022",
+      "authorId": 1
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "nombre": "Joaquin Delhom",
+      "nick": "jodelvia"
+    },
+    {
+      "name": "Joseba",
+      "descrip": "joseba15",
+      "id": 2
+    },
+    {
+      "name": "Joseba",
+      "descrip": "joseba15",
+      "id": 3
+    }
+  ],
+  "comments ": [
+    {
+      "id": 1,
+      "content": "hello world",
+      "authorid": 1,
+      "postid": 1,
+      "timestamp": "13-10-2022 13:30:25"
+    }
+  ]
+}
