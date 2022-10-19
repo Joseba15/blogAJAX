@@ -2,13 +2,30 @@
 <html>
     <head>
         <title>Blog</title>
+        <link rel="stylesheet" href="mvp.css">
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <form id="formulario">
-            <label>Nombre: </label><input type="text" name="nombre" id="nombre"><br>
-            <label>NidckName: </label><input type="text" name="nick" id="nick"><br>
-            <button type="submit">Enviar</button>
-        </form>
+        <div id="main" align="center">
+            <form id="formulario">
+                <h2>Introduzca sus datos</h2>
+                <div>
+                    <label>Nombre: </label><input type="text" name="nombre" id="nombre" required>
+                    <small></small>
+                </div>
+                <br>
+                <div>
+                    <label>NickName: </label><input type="text" name="nick" id="nick" required>
+                    <small></small>
+                </div>
+                <br>
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+        <h2>Lista de posts</h2>
+        <ul id="ul1">
+            
+        </ul>
         <script src="blog.js"></script>
     </body>
 </html>
