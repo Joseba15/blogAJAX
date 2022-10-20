@@ -18,3 +18,12 @@
 }
 
 small {color: red;}
+
+#listaPost{
+    float: left;
+}
+
+#optionPost{
+    padding-left: 50%;
+    float: center ;
+}

@@ -110,16 +110,24 @@ formulario.addEventListener('input', function (e) {
 }) ;
 
 
+//GET EN LISTA
 
-
-
-
-
-
-
-//GET
 let peticion = new XMLHttpRequest();
+let autores=[];
+let nombreAutor;
+
 let miUl = document.getElementById("ul1");
+let peticionUser = new XMLHttpRequest();
+peticionUser.open('GET','http://localhost:3000/users');
+peticionUser.send();
+peticionUser.addEventListener('readystatechange', function(){
+    if (peticionUser.readyState === 4) {
+        if (peticionUser.status === 200) {
+            autores = JSON.parse(peticionUser.responseText); 
+        }
+    }
+
+})
 
 
 peticion.open('GET', 'http://localhost:3000/posts');
@@ -131,11 +139,16 @@ peticion.addEventListener('readystatechange', function() {
             console.log("Datos recibidos:");
             let posts = JSON.parse(peticion.responseText);  // Convertirmos los datos JSON a un objeto
             for (const post of posts) {
-               let li = document.createElement("li");
-               li.textContent=`Titulo del post : ${post.title} , autor : ${post.authorId}`;
-               miUl.appendChild(li);
-               //document.appendChild()
-               console.log(post);
+                for (const autor of autores) {
+                    if (post.authorId==autor.id) {
+                       nombreAutor=autor.nombre 
+                    }
+                }
+                // console.log(post);
+                // console.log(autores);
+                let li = document.createElement("li");
+                li.textContent=`Titulo del post : ${post.title} , autor : ${nombreAutor}`;
+                miUl.appendChild(li);
             }
         } else {
             console.log("Error " + peticion.status + " (" + peticion.statusText + ") en la petición");
@@ -143,4 +156,54 @@ peticion.addEventListener('readystatechange', function() {
     }
 })
 
+//-----------------------------------------------
 
+
+//GET EN OPTION
+ peticion = new XMLHttpRequest();
+ autores=[];
+ nombreAutor;
+
+let sel = document.getElementById("opAut");
+peticionUser = new XMLHttpRequest();
+peticionUser.open('GET','http://localhost:3000/users');
+peticionUser.send();
+peticionUser.addEventListener('readystatechange', function(){
+    if (peticionUser.readyState === 4) {
+        if (peticionUser.status === 200) {
+            autores = JSON.parse(peticionUser.responseText); 
+        }
+    }
+
+})
+
+
+peticion.open('GET', 'http://localhost:3000/posts');
+peticion.send();
+peticion.addEventListener('readystatechange', function() {
+    console.log("Estado de la petición: " + peticion.readyState);
+    if (peticion.readyState === 4) {
+        if (peticion.status === 200) {
+            console.log("Datos recibidos:");
+            let posts = JSON.parse(peticion.responseText);  // Convertirmos los datos JSON a un objeto
+            for (const post of posts) {
+                
+                // console.log(post);
+                // console.log(autores);
+                let  op = document.createElement("option");
+                op.textContent=autor.nombre;
+                sel.appendChild(op);
+            }
+        } else {
+            console.log("Error " + peticion.status + " (" + peticion.statusText + ") en la petición");
+        }
+    }
+})
+
+// let users = JSON.parse(peticion.responseText);         
+// let sel = document.getElementById("opAut");
+// for (const user of users) {
+//     let  op = document.createElement("option");
+//     op.textContent=user.nombre;
+//     sel.appendChild(op);
+// }
